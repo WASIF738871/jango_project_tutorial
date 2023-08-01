@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends 'base.html' %}
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+{% block start %}
 
-
+<h1>
+    Used base file ,will use all common code in it and be populated in other templates with the help of template engine
+</h1>
 
 <script>
 
@@ -13,5 +12,5 @@
 
 </script>
 
-</body>
-</html>
+{% endblock %}
+

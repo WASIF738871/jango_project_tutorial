@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block start %}
+
+<table class="table">
+  <h1>Recipe Table</h1>
+  <br/>
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Recipe Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Recipe Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for recipe in all_recipe%}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{recipe.title}}</td>
+      <td>{{recipe.description}}</td>
+      <td><img src= "/media/{{recipe.recipe_image}}" width="200" 
+        height="200"/></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

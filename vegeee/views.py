@@ -19,3 +19,15 @@ def recipeform(request):
         
         
     return render(request, 'recipeform.html')
+
+
+def recipeTable(request):
+
+    all_recipe = Recipe.objects.all()
+
+    context = {
+        "all_recipe":all_recipe
+    }
+    print(context)
+     
+    return render(request, 'table.html', context)

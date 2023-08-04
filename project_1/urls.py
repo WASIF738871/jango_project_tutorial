@@ -27,6 +27,7 @@ urlpatterns = [
     path('render/', templateRend ),
     path('render-recipe/', recipeform ),
     path('render-table/', recipeTable ),
+    path('delete-recipe/<id>/', deleteRecipe ),
 
 
     path('admin/', admin.site.urls),

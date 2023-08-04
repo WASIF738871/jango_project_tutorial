@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from vegeee.models import Recipe
 
 # Create your views here.
@@ -31,3 +31,10 @@ def recipeTable(request):
     print(context)
      
     return render(request, 'table.html', context)
+
+
+
+def deleteRecipe(request, id):
+    queryset = Recipe.objects.get(id=id)
+    queryset.delete()
+    return redirect('/render-table/')

@@ -1,9 +1,18 @@
 {% extends 'base.html' %} {% block start %}
-
+<div class="container mt-5">
 <h1>Recipe Table</h1>
 <br/>
 <a href="/render-recipe/" class="btn btn-success" >Add Recipe</a>
+<hr/>
 <br/>
+
+<form >
+  <input type="text" class="form-control" placeholder="Search.." name="search">
+  <br/>
+  <button class="btn btn-success" type="submit">Search<button/>
+</form>
+<br/>
+
 <table class="table">
   <br/>
   <thead>
@@ -22,10 +31,15 @@
       <td>{{recipe.title}}</td>
       <td>{{recipe.description}}</td>
       <td><img src= "/media/{{recipe.recipe_image}}" height="200"/></td>
-      <td><a href="/delete-recipe/{{recipe.id}}/" class="btn btn-danger" height="200">Delete<a/></td>
+      <td>
+        <a href="/delete-recipe/{{recipe.id}}/" class="btn btn-danger" >Delete<a/>
+          <hr/>
+        <a href="/update-recipe/{{recipe.id}}/" class="btn btn-success" >Update<a/>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+</div>
 
 {% endblock %}

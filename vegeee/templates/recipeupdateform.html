@@ -1,25 +1,26 @@
 {% extends 'base.html'%} {%block start%}
 
 <div class="container mt-3">
+  {{recipe.title}}
     <form action="" method="post" enctype="multipart/form-data">
-      <h1>Recipe Form</h1>
+      <h1>Recipe Update Form</h1>
       <br />
     {% csrf_token %}
     <div class="mb-3">
       <label for="name" class="form-label">Recipe Name</label>
-      <input type="text" class="form-control" name="title" />
+      <input type="text" name="title" value="{{recipe.title}}" class="form-control"  />
     </div>
 
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
-      <textarea  name="description" class="form-control" ></textarea>
+      <textarea  name="description" class="form-control" >{{recipe.description}}</textarea>
     </div>
 
     <div class="mb-3">
       <label class="form-check-label" for="recipe_image">Upload Image</label>
       <input name="recipe_image" type="file" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-primary">Add Recipe</button>
+    <button type="submit" class="btn btn-success">Update Recipe</button>
     <a href="/render-table/" class="btn btn-success" >Go to Recipe Table</a>
   </form>
 </div>

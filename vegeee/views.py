@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from vegeee.models import Recipe
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 
@@ -16,6 +17,12 @@ def register_page(request):
         last_name = request.POST.get('last_name')
         username = request.POST.get('username')
         password = request.POST.get('password')
+    
+        user = User.objects.filter(username= username)
+
+        if user.exists():
+            messages.info(request, "User already registered")
+            return render(request, 'register.html')
 
         User.objects.create(
             
@@ -25,7 +32,7 @@ def register_page(request):
             password=password
 
         )
-     
+    messages.info(request, "User registered Successfully") 
     return render(request, 'register.html')
 
 
@@ -43,7 +50,6 @@ def recipeform(request):
             description= description,
             recipe_image= recipe_image
             )
-        
         
     return render(request, 'recipeform.html')
 

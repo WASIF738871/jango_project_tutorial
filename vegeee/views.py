@@ -2,11 +2,28 @@ from django.shortcuts import render, redirect
 from vegeee.models import Recipe
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
 
 def login_page(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+    
+        user = User.objects.filter(username= username)
+
+        if not User.objects.filter(username= username).exists():
+            messages.error(request, "Invalid username!")
+        
+        user = authenticate(username= username, password=password)
+        if user is None:
+            messages.error(request, "Invalid password!")
+        else:
+            login(request, user)
+            messages.info(request, " User Successfully loggedin!")
+
      
     return render(request, 'login.html')
 

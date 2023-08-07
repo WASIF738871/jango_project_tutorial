@@ -24,14 +24,16 @@ def register_page(request):
             messages.info(request, "User already registered")
             return render(request, 'register.html')
 
-        User.objects.create(
+        user= User.objects.create(
             
             first_name=first_name,
             last_name=last_name,
             username=username,
-            password=password
-
         )
+        user.set_password(password)
+        user.save()
+
+
     messages.info(request, "User registered Successfully") 
     return render(request, 'register.html')
 

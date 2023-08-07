@@ -24,6 +24,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', home ),
+    path('login/', login_page ),
+    path('register/', register_page ),
     path('render/', templateRend ),
     path('render-recipe/', recipeform ),
     path('render-table/', recipeTable ),

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from vegeee.models import Recipe
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -12,20 +12,28 @@ def login_page(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
     
-        user = User.objects.filter(username= username)
-
         if not User.objects.filter(username= username).exists():
             messages.error(request, "Invalid username!")
+            return redirect(request, 'login.html')
         
         user = authenticate(username= username, password=password)
         if user is None:
             messages.error(request, "Invalid password!")
+            return redirect(request, 'login.html')
         else:
             login(request, user)
-            messages.info(request, " User Successfully loggedin!")
+            return render(request, 'dashboard.html')
 
      
     return render(request, 'login.html')
+
+
+def logout_page(request):
+    logout(request)
+     
+    return render(request, 'dashboard.html')
+
+
 
 def register_page(request):
 
@@ -51,7 +59,7 @@ def register_page(request):
         user.save()
 
 
-    messages.info(request, "User registered Successfully") 
+    # messages.info(request, "User registered Successfully") 
     return render(request, 'register.html')
 
 
